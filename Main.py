@@ -1,21 +1,20 @@
 import pygame
 from Ball import Ball
+from Paddle import Paddle
 
 pygame.init()
 
 # Parameters
 window_size = (720, 640)
 # Paddle
-paddle_color = (0, 128, 255)
-paddle_size = [80, 10]
-x_pos_paddle = 310
-y_pos_paddle = 620
+
 
 done = False
 
 clock = pygame.time.Clock()
 ball = Ball()
-print(ball.x_pos_ball)
+paddle = Paddle()
+print(ball.x_pos)
 screen = pygame.display.set_mode(window_size)
 
 while not done:
@@ -25,20 +24,20 @@ while not done:
 
     pressed = pygame.key.get_pressed()
 
-    if pressed[pygame.K_LEFT]: x_pos_paddle -= 3
-    if pressed[pygame.K_RIGHT]: x_pos_paddle += 3
+    if pressed[pygame.K_LEFT]: paddle.x_pos -= 3
+    if pressed[pygame.K_RIGHT]: paddle.x_pos += 3
 
     screen.fill((0, 0, 0))
 
-    if (ball.x_pos_ball <= 20) or (ball.x_pos_ball >= window_size[0]-20):
-        ball.vx_ball = -ball.vx_ball
-    if (ball.y_pos_ball <= 20) or (ball.y_pos_ball >= window_size[1]-20):
-        ball.vy_ball = -ball.vy_ball
+    if (ball.x_pos <= 20) or (ball.x_pos >= window_size[0]-20):
+        ball.vx = -ball.vx
+    if (ball.y_pos <= 20) or (ball.y_pos >= window_size[1]-20):
+        ball.vy = -ball.vy
 
     ball.move()
 
-    pygame.draw.rect(screen, paddle_color, pygame.Rect(x_pos_paddle, y_pos_paddle, paddle_size[0], paddle_size[1]))
-    pygame.draw.circle(screen, ball.ball_color, (ball.x_pos_ball, ball.y_pos_ball), ball.ball_size)
+    pygame.draw.rect(screen, paddle.color, pygame.Rect(paddle.x_pos, paddle.y_pos, paddle.size[0], paddle.size[1]))
+    pygame.draw.circle(screen, ball.color, (ball.x_pos, ball.y_pos), ball.size)
     pygame.display.flip()
     clock.tick(60)
 
