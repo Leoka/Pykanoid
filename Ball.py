@@ -2,7 +2,7 @@ class Ball:
 
     def __init__(self):
         self.color = (255, 0, 0)
-        self.size = 20
+        self.size = 15
         self.x_pos = 100
         self.y_pos = 100
         self.vx = 3
