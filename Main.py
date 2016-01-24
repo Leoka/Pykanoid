@@ -53,14 +53,19 @@ while not done:
     if (ball.y_pos + ball.size >= paddle.y_pos) and ((ball.x_pos >= paddle.x_pos) and (ball.x_pos <= paddle.x_pos + paddle.size[0])):
         ball.vy = -ball.vy
 
+    # for i in range(rows):
+    #     for j in range(columns):
+    #         if (tableOfBricks[i][j].isActive == True) and ((ball.y_pos + ball.size <= tableOfBricks[i][j]) and (ball.x_pos))
+
     ball.move()
 
     for i in range(rows):
         for j in range(columns):
-            pygame.draw.rect(screen, tableOfBricks[0][0].color, pygame.Rect(tableOfBricks[i][j].x_pos, tableOfBricks[i][j].y_pos, tableOfBricks[i][j].size[0], tableOfBricks[i][j].size[1]))
+            if tableOfBricks[i][j].isActive == True:
+                pygame.draw.rect(screen, tableOfBricks[0][0].color, pygame.Rect(tableOfBricks[i][j].x_pos, tableOfBricks[i][j].y_pos, tableOfBricks[i][j].size[0], tableOfBricks[i][j].size[1]))
 
     pygame.draw.rect(screen, paddle.color, pygame.Rect(paddle.x_pos, paddle.y_pos, paddle.size[0], paddle.size[1]))
     pygame.draw.circle(screen, ball.color, (ball.x_pos, ball.y_pos), ball.size)
     pygame.display.flip()
 
-    clock.tick(60)
+    clock.tick(100)

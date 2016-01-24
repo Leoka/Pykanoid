@@ -5,3 +5,5 @@ class Brick:
         self.size = [60, 20]
         self.x_pos = 0
         self.y_pos = 0
+        self.isActive = True
+
